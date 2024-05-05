@@ -1,19 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
 import TodoInput from './components/todoInput';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import Todolist from './components/todoList'
+
 function App() {
   let [listTodo,setListTodo]=useState([]);
+
+  useEffect(()=>{
+    setandStore()
+  },[])
+
+  let setandStore = () => {
+    const storedTodoList = localStorage.getItem('todoList');
+    if (storedTodoList) {
+      setListTodo(JSON.parse(storedTodoList));
+    }
+  }
+
+  
+
+
+  useEffect(()=>{
+    //console.log("gggggg"+listTodo);
+    if(listTodo.length>0)
+    localStorage.setItem('todoList', JSON.stringify(listTodo));
+
+  },[listTodo])
+
   let addlist=(inputText)=>{
     if(!inputText=='')
     setListTodo([...listTodo,inputText])
+
+  
   }
+  console.log(addlist);
 
   const deleteListItem=(key)=>{
     let newListTodo=[...listTodo];
     newListTodo.splice(key,1);
     setListTodo(newListTodo)
+   // localStorage.setItem('todoList', JSON.stringify(newListTodo));
+    
   }
  
 
