@@ -39,10 +39,12 @@ function App() {
     let newListTodo=[...listTodo];
     newListTodo.splice(key,1);
     setListTodo(newListTodo)
-   // localStorage.setItem('todoList', JSON.stringify(newListTodo));
+   
     
   }
- 
+//  Const= editList=((key)=>{
+
+//  })
 
  
   return (
